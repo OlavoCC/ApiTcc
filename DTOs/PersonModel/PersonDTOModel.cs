@@ -1,8 +1,7 @@
 namespace DTOs.PersonModel;
 using System.ComponentModel.DataAnnotations;
 
-public class PersonDTOModel
-{
+public class PersonDTOModel{
 
     //Person
 
