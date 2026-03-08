@@ -11,7 +11,7 @@ public class EntryMessageDTO
     [Required(ErrorMessage = "ReceiverId is required")]
     public int ReceiverId {get; set;}
     [Required(ErrorMessage = "SendAI is required")]
-    public bool SendAI {get; set;}
+    public bool Send {get; set;}
     [Required(ErrorMessage = "ReadAI is required")]
-    public bool ReadAI {get; set;}
+    public bool Read {get; set;}
 }

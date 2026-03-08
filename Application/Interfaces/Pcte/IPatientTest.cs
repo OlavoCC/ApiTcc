@@ -5,5 +5,5 @@ namespace Application.Interfaces.Pcte;
 
 public interface IPatientTest{
     Task<ReturnPatientDTO> CreatePatient(EntryPatientDTO dto);
-    Task<ReturnPatientDTO> GetItens();
+    Task<ReturnPatientDTO> GetAllPatient();
 }
