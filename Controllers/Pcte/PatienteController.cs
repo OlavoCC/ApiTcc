@@ -1,0 +1,22 @@
+using Microsoft.AspNetCore.Mvc;
+using Application.Interfaces.Pcte;
+using DTOs.Pcte;
+namespace API.Controllers.Pcte;
+
+[ApiController]
+[Route("api/[controller]")]
+public class PatientController : ControllerBase
+{
+    private readonly IPatientCreate _patientCreate;
+    public PatientController(IPatientCreate patientCreate)
+    {
+        _patientCreate = patientCreate;
+    }
+
+    [HttpPost("create")]
+    public async Task<IActionResult> CreatePatient(EntryPatientDTO dto)
+    {
+        var result = await _patientCreate.CreatePatientAsync(dto);
+        return Ok(result);
+    }
+}

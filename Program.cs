@@ -1,3 +1,5 @@
+using Data.Repository.Pcte;
+using Data.Interface.Pcte;
 using Application.Services.Pcte;
 using Application.Interfaces.Pcte;
 
@@ -12,7 +14,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 // register application services before the container is built
-builder.Services.AddScoped<IPatientTest, PatientTestService>();
+//builder.Services.AddScoped<>();
+builder.Services.AddScoped<IPatientCreateSQL, CreateSQLPatient>();
+builder.Services.AddScoped<IPatientCreate, PatientCreateService>();
+
 
 var app = builder.Build();
 
