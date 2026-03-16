@@ -16,7 +16,7 @@ public class PatientCreateService : IPatientCreate
     {
         var patient = new Patient(dto.Name, dto.LastName, dto.CPF, dto.Age, dto.Password);
         int data = await _patientCreate.CreatePatientAsync(patient);
-        var returnDTO = new ReturnPatientDTO(data);
+        var returnDTO = new ReturnPatientDTO(data, patient.Role);
         return returnDTO;
     }
 }

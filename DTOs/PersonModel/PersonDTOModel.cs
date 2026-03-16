@@ -16,7 +16,7 @@ public class PersonDTOModel{
     public string CPF {get; set;}
 
     [Required(ErrorMessage = "Age is Required")]
-    [Range(1, 120)]
+    [Range(1, 100)]
     public int Age {get; set;}
 
     [Required(ErrorMessage = "Password is Required")]
