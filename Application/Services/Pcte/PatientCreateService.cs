@@ -12,7 +12,7 @@ public class PatientCreateService : IPatientCreate
         _patientCreate = patientCreate;
     }
 
-    public async Task<ReturnPatientDTO> CreatePatientAsync(EntryPatientDTO dto)
+    public async Task<ReturnPatientDTO> CreatePatientAsync(RegisterPatientDTO dto)
     {
         var patient = new Patient(dto.Name, dto.LastName, dto.CPF, dto.Age, dto.Password);
         int data = await _patientCreate.CreatePatientAsync(patient);

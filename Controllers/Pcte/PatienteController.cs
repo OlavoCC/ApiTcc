@@ -14,7 +14,7 @@ public class PatientController : ControllerBase
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> CreatePatient(EntryPatientDTO dto)
+    public async Task<IActionResult> CreatePatient(RegisterPatientDTO dto)
     {
         var result = await _patientCreate.CreatePatientAsync(dto);
         return Ok(result);

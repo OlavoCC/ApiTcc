@@ -1,6 +1,6 @@
 namespace DTOs.Psi;
 using System.ComponentModel.DataAnnotations;
-using DTOs.PersonModel;
+using DTOs.PersonModelDTO;
 
 public class EntryPsicologoDTO : PersonDTOModel{
 

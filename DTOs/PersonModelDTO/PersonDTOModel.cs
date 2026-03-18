@@ -1,4 +1,4 @@
-namespace DTOs.PersonModel;
+namespace DTOs.PersonModelDTO;
 using System.ComponentModel.DataAnnotations;
 
 public class PersonDTOModel{
