@@ -1,4 +1,4 @@
-namespace DTOs.Psi;
+namespace DTOs.Psi.Register;
 using System.ComponentModel.DataAnnotations;
 using DTOs.PersonModelDTO;
 

@@ -2,6 +2,7 @@ using Application.Interfaces.Pcte;
 using Domain.Models.Pcte;
 using Data.Interface.Pcte;
 using DTOs.Pcte;
+using DTOs.Pcte.Register;
 namespace Application.Services.Pcte;
 
 public class PatientCreateService : IPatientCreate

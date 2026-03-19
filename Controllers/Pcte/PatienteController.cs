@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Application.Interfaces.Pcte;
-using DTOs.Pcte;
+using DTOs.Pcte.Register;
 namespace API.Controllers.Pcte;
 
 [ApiController]
