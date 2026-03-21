@@ -2,6 +2,10 @@ using Data.Repository.Pcte;
 using Data.Interface.Pcte;
 using Application.Services.Pcte;
 using Application.Interfaces.Pcte;
+using Data.Interface;
+using Data.Repository;
+using Application.Services;
+using Application.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +32,8 @@ builder.Services.AddScoped<IPatientSQL, PatientSQL>();
 builder.Services.AddScoped<IPatient, PatientService>();
 builder.Services.AddScoped<IAppointment, AppointmentService>();
 builder.Services.AddScoped<IAppointmentSQL, AppointmentSQL>();
+builder.Services.AddScoped<IPersonSQL, PersonSQL>();
+builder.Services.AddScoped<IPerson, PersonService>();
 
 var app = builder.Build();
 

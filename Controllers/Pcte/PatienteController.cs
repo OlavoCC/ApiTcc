@@ -22,12 +22,6 @@ public class PatientController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> LoginPatientAsync([FromBody] LoginPatientDTO dto){
-        var result = await _patient.LoginPatientAsync(dto);
-        return Ok(result);
-    }
-
     [HttpPost("createAdress")]
     public async Task<IActionResult> CreateAdress([FromBody] AddressEntryDTO dto){
         var result = await _patient.CreateAdressAsync(dto);

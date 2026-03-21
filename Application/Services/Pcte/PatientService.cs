@@ -28,21 +28,6 @@ public class PatientService : IPatient
 
     //Login
 
-    public async Task<ReturnPatientDTO> LoginPatientAsync(LoginPatientDTO dto)
-    {
-        var patient = new Patient("", "", dto.CPF, 0, dto.Password, "");
-        bool data = await _patientSQL.LoginAsync(patient);
-        if (data){
-            var result = await _patientSQL.GetIdPatient(dto.CPF);
-            int id = result.Id;
-            string role = result.Role;
-            var returnDTO = new ReturnPatientDTO(id, role);
-            return returnDTO;
-        }
-        else{
-            return null;
-        }
-    }
 
     public async Task<AdressReturnDTO> CreateAdressAsync(AddressEntryDTO dto)
     {

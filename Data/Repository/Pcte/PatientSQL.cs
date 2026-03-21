@@ -12,18 +12,9 @@ public class PatientSQL : IPatientSQL
         return id;
     }
 
-    public async Task <bool>LoginAsync(Person person)
-    {
-        string cpf = person.CPF;
-        string password = person.Password;
-        return true;
-    }
     
-    public async Task <(int Id, string Role)>GetIdPatient(string cpf){
-        int id = 0;
-        string role = "c";
-        return (id, role);
-    }
+    
+    
 
     public async Task<bool>CreateAdressAsync(Adress adress)
     {
