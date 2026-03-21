@@ -4,4 +4,5 @@ using DTOs.Pcte;
 public interface IPatientCreate
 {
     Task <ReturnPatientDTO> CreatePatientAsync(RegisterPatientDTO dto);
+    Task <ReturnPatientDTO> LoginPatientAsync(LoginPatientDTO dto);
 }

@@ -19,4 +19,10 @@ public class PatientController : ControllerBase
         var result = await _patientCreate.CreatePatientAsync(dto);
         return Ok(result);
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> LoginPatientAsync(LoginPatientDTO dto){
+        var result = await _patientCreate.LoginPatientAsync(dto);
+        return Ok(result);
+    }
 }

@@ -20,4 +20,20 @@ public class PatientCreateService : IPatientCreate
         var returnDTO = new ReturnPatientDTO(data, patient.Role);
         return returnDTO;
     }
+
+    public async Task<ReturnPatientDTO> LoginPatientAsync(LoginPatientDTO dto)
+    {
+        var patient = new Patient("", "", dto.CPF, 0, dto.Password, "");
+        bool data = await _patientCreate.LoginPatientAsync(patient);
+        if (data){
+            var result = await _patientCreate.GetIdPatient(dto.CPF);
+            int id = result.Id;
+            string role = result.Role;
+            var returnDTO = new ReturnPatientDTO(id, role);
+            return returnDTO;
+        }
+        else{
+            return null;
+        }
+    }
 }
