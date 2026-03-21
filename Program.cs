@@ -15,8 +15,10 @@ builder.Services.AddControllers();
 
 // register application services before the container is built
 //builder.Services.AddScoped<>();
-builder.Services.AddScoped<IPatientCreateSQL, CreateSQLPatient>();
-builder.Services.AddScoped<IPatientCreate, PatientCreateService>();
+builder.Services.AddScoped<IPatientSQL, PatientSQL>();
+builder.Services.AddScoped<IPatient, PatientService>();
+builder.Services.AddScoped<IAppointment, AppointmentService>();
+builder.Services.AddScoped<IAppointmentSQL, AppointmentSQL>();
 
 
 var app = builder.Build();

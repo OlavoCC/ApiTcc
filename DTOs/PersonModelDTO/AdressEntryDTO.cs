@@ -25,4 +25,15 @@ public class AddressEntryDTO{
     [Required(ErrorMessage = "Neighborhood is required.")]
     public string Neighborhood {get; set;}
 
+    [Required(ErrorMessage = "Complement is required.")]
+    public bool IsApartment {get; set;}
+
+    [Required(ErrorMessage = "Floor is required.")]
+    public int floor {get; set;}
+
+    [Required(ErrorMessage = "Apartment Number is required.")]
+    public int ApartmentNumber {get; set;}
+
+    
+
 }

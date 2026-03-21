@@ -23,9 +23,7 @@ public class PersonDTOModel{
     [MinLength(6, ErrorMessage = "Password MinLenght = 6 char")]
     public string Password {get; set;}
 
-    [Required(ErrorMessage = "Role ir Required")]
-    [MaxLength(1, ErrorMessage = "Role MaxLenght = 1 char")]
-    public string Role {get; set;}
+
 
     
 

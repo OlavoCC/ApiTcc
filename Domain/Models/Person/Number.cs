@@ -1,3 +1,4 @@
+namespace Domain.Models.Person;
 public class Number
 {
     public int Id { get; private set; }
