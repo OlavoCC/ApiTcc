@@ -16,33 +16,33 @@ public class PatientController : ControllerBase
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> CreatePatient(RegisterPatientDTO dto)
+    public async Task<IActionResult> CreatePatient([FromBody] RegisterPatientDTO dto)
     {
         var result = await _patient.CreatePatientAsync(dto);
         return Ok(result);
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> LoginPatientAsync(LoginPatientDTO dto){
+    public async Task<IActionResult> LoginPatientAsync([FromBody] LoginPatientDTO dto){
         var result = await _patient.LoginPatientAsync(dto);
         return Ok(result);
     }
 
     [HttpPost("createAdress")]
-    public async Task<IActionResult> CreateAdress(AddressEntryDTO dto){
+    public async Task<IActionResult> CreateAdress([FromBody] AddressEntryDTO dto){
         var result = await _patient.CreateAdressAsync(dto);
         return Ok(result);
     }
 
     [HttpPost("createNumber")]
-    public async Task <IActionResult> CreatePhoneNumberAsync(PhoneNumberEntryDTO dto)
+    public async Task <IActionResult> CreatePhoneNumberAsync([FromBody] PhoneNumberEntryDTO dto)
     {
         var result = await _patient.CreatePhoneNumberAsync(dto);
         return Ok(result);
     }
 
     [HttpPost("createEmail")]
-    public async Task<IActionResult> CreateEmailAsync(EmailEntryDTO dto)
+    public async Task<IActionResult> CreateEmailAsync([FromBody] EmailEntryDTO dto)
     {
         var result = await _patient.CreateEmailAsync(dto);
         return Ok(result);

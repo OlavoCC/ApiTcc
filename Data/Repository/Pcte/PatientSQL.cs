@@ -12,10 +12,10 @@ public class PatientSQL : IPatientSQL
         return id;
     }
 
-    public async Task <bool>LoginPatientAsync(Patient patient)
+    public async Task <bool>LoginAsync(Person person)
     {
-        string cpf = patient.CPF;
-        string password = patient.Password;
+        string cpf = person.CPF;
+        string password = person.Password;
         return true;
     }
     

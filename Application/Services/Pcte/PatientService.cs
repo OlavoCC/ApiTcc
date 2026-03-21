@@ -31,7 +31,7 @@ public class PatientService : IPatient
     public async Task<ReturnPatientDTO> LoginPatientAsync(LoginPatientDTO dto)
     {
         var patient = new Patient("", "", dto.CPF, 0, dto.Password, "");
-        bool data = await _patientSQL.LoginPatientAsync(patient);
+        bool data = await _patientSQL.LoginAsync(patient);
         if (data){
             var result = await _patientSQL.GetIdPatient(dto.CPF);
             int id = result.Id;
