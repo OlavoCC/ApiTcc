@@ -1,9 +1,14 @@
 namespace DTOs.PersonModelDTO.Return;
 
 public class PhoneNumberReturnDTO{
-    public bool Sucess {get; set;}
-    public PhoneNumberReturnDTO(bool sucess)
+    public int Id {get; set;}
+    public string Number {get; set;}
+    public string DDD {get; set;}
+    public PhoneNumberReturnDTO(int id, string number, string ddd)
     {
-        Sucess = sucess;
+        Id = id;
+        DDD = ddd;
+        Number = number;
+
     }
 }

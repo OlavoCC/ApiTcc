@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Application.Interfaces.Pcte;
 using DTOs.Pcte.Register;
-using DTOs.Pcte.Appointment;
+using DTOs.Appointment;
 using DTOs.PersonModelDTO;
 namespace API.Controllers.Pcte;
 
@@ -15,31 +15,47 @@ public class PatientController : ControllerBase
         _patient = patient;
     }
 
-    [HttpPost("create")]
+    [HttpPost("createPatient")]
     public async Task<IActionResult> CreatePatient([FromBody] RegisterPatientDTO dto)
     {
         var result = await _patient.CreatePatientAsync(dto);
-        return Ok(result);
+        if (result.Data != null)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);    
     }
 
     [HttpPost("createAdress")]
     public async Task<IActionResult> CreateAdress([FromBody] AddressEntryDTO dto){
         var result = await _patient.CreateAdressAsync(dto);
-        return Ok(result);
+        if (result.Data != null)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result); 
     }
 
     [HttpPost("createNumber")]
     public async Task <IActionResult> CreatePhoneNumberAsync([FromBody] PhoneNumberEntryDTO dto)
     {
         var result = await _patient.CreatePhoneNumberAsync(dto);
-        return Ok(result);
+        if (result.Data != null)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
     }
 
     [HttpPost("createEmail")]
     public async Task<IActionResult> CreateEmailAsync([FromBody] EmailEntryDTO dto)
     {
         var result = await _patient.CreateEmailAsync(dto);
-        return Ok(result);
+        if (result.Data != null)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
     }
 
 }

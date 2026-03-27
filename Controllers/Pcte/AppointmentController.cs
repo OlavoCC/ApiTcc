@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Application.Interfaces.Pcte;
-using DTOs.Pcte.Appointment;
+using DTOs.Appointment;
 namespace API.Controllers.Pcte;
 
 [ApiController]
@@ -13,11 +13,15 @@ public class AppointmentController : ControllerBase
         _appointmentService = appointmentService;
     }
 
-    [HttpPost("create")]
-    public async Task<IActionResult> CreateAppointment(NewAppointmentDTO dto)
+    [HttpPost("createAppointment")]
+    public async Task<IActionResult> CreateAppointment([FromBody] EntryAppointmentDTO dto)
     {
         var result = await _appointmentService.CreateAppointmentAsync(dto);
-        return Ok(result);
+        if (result.Data != null)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
     }
 
     

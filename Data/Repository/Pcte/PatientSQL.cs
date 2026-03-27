@@ -1,14 +1,13 @@
 namespace Data.Repository.Pcte;
 using Data.Interface.Pcte;
 using Domain.Models.Pcte;
-using Domain.Models.Appointment;
 using Domain.Models.Person;
 
 public class PatientSQL : IPatientSQL
 {
     public async Task <int>CreatePatientAsync(Patient patient)
     {
-        int id = 0;
+        int id = 1;
         return id;
     }
 
@@ -16,29 +15,34 @@ public class PatientSQL : IPatientSQL
     
     
 
-    public async Task<bool>CreateAdressAsync(Adress adress)
+    public async Task<int>CreateAdressAsync(Adress adress)
     {
         
         if(adress.IsApartment){
-            return true;
+            int id = 0;
+            return id;
         }
         else{
-            return true;
+            int id = 0;
+            return id;
         }
     }
 
-    public async Task<bool>CreatePhoneNumberAsync(Number number)
+    public async Task<int>CreatePhoneNumberAsync(Number number)
     {
         if(number.IsEmergencyContact){
-            return true;
+            int id = 0;
+            return id;
         }
         else{
-            return true;
+           int id = 0;
+            return id;
         }
     }
 
-    public async Task<bool> CreateEmailAsync(Email email)
+    public async Task<int> CreateEmailAsync(Email email)
     {
-        return true;
+        int id = 0;
+        return id;
     }
 }

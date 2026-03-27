@@ -1,6 +1,5 @@
 using DTOs.Pcte.Register;
-using DTOs.PersonModelDTO.Return;
-using DTOs.PersonModelDTO;
+using Application.Response.Pcte;
 using DTOs.Pcte;
 
 namespace Application.Interfaces;

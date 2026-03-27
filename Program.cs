@@ -6,10 +6,10 @@ using Data.Interface;
 using Data.Repository;
 using Application.Services;
 using Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 🔥 CORS CONFIG
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
@@ -43,10 +43,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// 🔥 MUITO IMPORTANTE: ordem
 app.UseHttpsRedirection();
 
-app.UseCors("AllowFrontend"); // 👈 AQUI
+app.UseCors("AllowFrontend"); 
 
 app.UseAuthorization();
 

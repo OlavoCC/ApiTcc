@@ -1,6 +1,8 @@
 namespace Application.Interfaces.Pcte;
-using DTOs.Pcte.Appointment;
+
+using DTOs.Appointment;
+using Application.Response.Pcte;
 public interface IAppointment
 {
-    Task <ReturnAppointmentDTO> CreateAppointmentAsync(NewAppointmentDTO dto);
+    Task <Result<ReturnAppointmentDTO>> CreateAppointmentAsync(EntryAppointmentDTO dto);
 }

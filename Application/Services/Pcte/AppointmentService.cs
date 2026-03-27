@@ -1,10 +1,8 @@
 using Application.Interfaces.Pcte;
-using Domain.Models.Pcte;
 using Data.Interface.Pcte;
-using DTOs.Pcte;
-using DTOs.Pcte.Register;
-using DTOs.Pcte.Appointment;
+using DTOs.Appointment;
 using Domain.Models.Appointment;
+using Application.Response.Pcte;
 namespace Application.Services.Pcte;
 
 public class AppointmentService : IAppointment
@@ -15,11 +13,22 @@ public class AppointmentService : IAppointment
         _appointmentSQL = appointmentSQL;
     }
 
-    public async Task<ReturnAppointmentDTO> CreateAppointmentAsync(NewAppointmentDTO dto)
+    public async Task<Result<ReturnAppointmentDTO>> CreateAppointmentAsync(EntryAppointmentDTO dto)
     {
         var appointment = new Appointment(dto.Type, dto.Date, dto.PatientId, dto.PsychologistId);
         int data = await _appointmentSQL.CreateAppointmentAsync(appointment);
-        var returnDTO = new ReturnAppointmentDTO(data);
-        return returnDTO;
+        if (data <= 0)
+        {
+            return new Result<ReturnAppointmentDTO>
+            {
+              Message = "Erro ao criar consulta"  
+            };
+        }
+        var returnDTO = new ReturnAppointmentDTO(data, appointment.Type, appointment.Date, appointment.PatientId, appointment.PsychologistId);
+        return new Result<ReturnAppointmentDTO>
+        {
+            Message = "Consulta criada com sucesso",
+            Data = returnDTO
+        };
     }
 }

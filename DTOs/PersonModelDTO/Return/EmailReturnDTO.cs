@@ -1,10 +1,13 @@
 namespace DTOs.PersonModelDTO.Return;
 
 public class EmailReturnDTO{
-    public bool Sucess {get; set;}
-
+    public int Id {get; set;}
+    public string Address {get; set;}
+    public string Extension {get; set;}
     
-    public EmailReturnDTO(bool sucess){
-        Sucess = sucess;
+    public EmailReturnDTO(int id, string address, string extension){
+        Id = id;
+        Address = address;
+        Extension = extension;
     }
 }

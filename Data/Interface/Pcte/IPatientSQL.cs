@@ -5,7 +5,7 @@ namespace Data.Interface.Pcte;
 public interface IPatientSQL
 {
     Task <int>CreatePatientAsync(Patient patient);
-    Task <bool>CreateAdressAsync(Adress adress);
-    Task <bool>CreatePhoneNumberAsync(Number number);
-    Task <bool>CreateEmailAsync(Email email);
+    Task <int>CreateAdressAsync(Adress adress);
+    Task <int>CreatePhoneNumberAsync(Number number);
+    Task <int>CreateEmailAsync(Email email);
 }

@@ -6,6 +6,7 @@ using DTOs.Pcte.Register;
 using DTOs.PersonModelDTO.Return;
 using DTOs.PersonModelDTO;
 using Data.Interface.Pcte;
+using Application.Response.Pcte;
 namespace Application.Services.Pcte;
 
 public class PatientService : IPatient
@@ -18,46 +19,84 @@ public class PatientService : IPatient
 
     //Register
 
-    public async Task<ReturnPatientDTO> CreatePatientAsync(RegisterPatientDTO dto)
+    public async Task<Result<ReturnPatientDTO>> CreatePatientAsync(RegisterPatientDTO dto)
     {
         var patient = new Patient(dto.Name, dto.LastName, dto.CPF, dto.Age, dto.Password);
         int data = await _patientSQL.CreatePatientAsync(patient);
-        var returnDTO = new ReturnPatientDTO(data, patient.Role);
-        return returnDTO;
+        if (data <= 0)
+        {
+            var result = new Result<ReturnPatientDTO>
+            {
+                Message = "Erro ao criar paciente",
+
+            };
+            return result;
+        }
+        var returndto = new ReturnPatientDTO(data, "C");
+        return new Result<ReturnPatientDTO>
+        {
+            Message = "Paceinte criado com sucesso",
+            Data = returndto
+        };
     }
 
     //Login
 
 
-    public async Task<AdressReturnDTO> CreateAdressAsync(AddressEntryDTO dto)
+    public async Task<Result<AdressReturnDTO>> CreateAdressAsync(AddressEntryDTO dto)
     {
         var adress = new Adress(dto.CEP, dto.City, dto.State, dto.Street, dto.Number, dto.Neighborhood, dto.IsApartment, dto.floor, dto.ApartmentNumber);
-        bool data = await _patientSQL.CreateAdressAsync(adress);
-        if (data)
+        int data = await _patientSQL.CreateAdressAsync(adress);
+        if(data <= 0)
         {
-            var returnDTO = new AdressReturnDTO(data);
-            return returnDTO;
+            var result = new Result<AdressReturnDTO>
+            {
+                Message = "Ërro ao inserir Endereco"
+            };
+            return result;
         }
-        return null;
+        var returnDTO = new AdressReturnDTO(data, adress.CEP, adress.CCity, adress.CState, adress.CNumber, adress.IsApartment, adress.ApartmentNumber);
+        return new Result<AdressReturnDTO>
+        {
+            Message = "Endreco criado com sucesso",
+            Data = returnDTO
+        };
     }
 
-    public async Task<PhoneNumberReturnDTO> CreatePhoneNumberAsync(PhoneNumberEntryDTO dto)
+    public async Task<Result<PhoneNumberReturnDTO>> CreatePhoneNumberAsync(PhoneNumberEntryDTO dto)
     {
         var number = new Number(dto.Id, dto.Number, dto.CountryCode, dto.DDD, dto.IsEmergencyContact);
-        bool data = await _patientSQL.CreatePhoneNumberAsync(number);
-        if (data)
+        int data = await _patientSQL.CreatePhoneNumberAsync(number);
+        if (data <= 0)
         {
-            var returnDTO = new PhoneNumberReturnDTO(data);
-            return returnDTO;
+            return new Result<PhoneNumberReturnDTO>
+            {
+              Message = "Erro ao criar numero de telefone"  
+            };
         }
-        return null;
+        var returnDTO = new PhoneNumberReturnDTO(data, number.NNumber, number.NDDD);
+        return new Result<PhoneNumberReturnDTO>{
+            Message = "Numero de telefone criado com sucesso",
+            Data = returnDTO
+        };
     }
 
-    public async Task <EmailReturnDTO> CreateEmailAsync(EmailEntryDTO dto)
+    public async Task <Result<EmailReturnDTO>> CreateEmailAsync(EmailEntryDTO dto)
     {
         var email = new Email(dto.Id, dto.Address, dto.Extension);
-        bool data = await _patientSQL.CreateEmailAsync(email);
-        var returnDTO = new EmailReturnDTO(data);
-        return (returnDTO);
+        int data = await _patientSQL.CreateEmailAsync(email);
+        if (data <= 0)
+        {
+            return new Result<EmailReturnDTO>
+            {
+              Message = "Erro ao criar email"  
+            };
+        }
+        var returnDTO = new EmailReturnDTO(data, email.EAddress, email.EExtension);
+        return new Result<EmailReturnDTO>
+        {
+          Message = "Email criado com sucesso",
+          Data = returnDTO  
+        };
     }
 }
