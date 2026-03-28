@@ -1,8 +1,23 @@
-// string strConnection = "server=localhost;uid=root;database=clinica";
-// var connection = new MySqlConnection(strConnection);
-// connection.Open();
+namespace Properties;
 
-// if (connection)
-// {
-//     Console.WriteLine("Conectado");
-// }
+using MySql.Data.MySqlClient;
+
+public class DBConnection
+{   
+    public static MySqlConnection Connection()
+    {
+        try
+        {
+            var strConnection = "server=localhost;uid=root;database=clinica";
+            var connection = new MySqlConnection(strConnection);
+            connection.Open();
+
+            return connection;
+        }
+        catch (Exception  ex)
+        {
+            throw new Exception($"Erro ao conectar no banco: {ex.Message}");
+        } 
+    }
+}
+

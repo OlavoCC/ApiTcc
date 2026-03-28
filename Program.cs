@@ -7,6 +7,7 @@ using Data.Repository;
 using Application.Services;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Properties;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,3 +53,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+DBConnection.Connection();
