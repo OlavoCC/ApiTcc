@@ -99,4 +99,22 @@ public class PatientService : IPatient
           Data = returnDTO  
         };
     }
+
+    public async Task <Result<Person>> GetPatientByIdAsync(int id)
+    {
+        var patient = await _patientSQL.GetPatientFromIdAsync(id);
+        if (patient != null)
+        {
+            return new Result<Person>
+            {
+                Message = "Paciente encontrado com sucesso",
+                Data = patient
+            };
+        }
+        return new Result<Person>
+        {
+            Message = "Paciente não encontrado"
+        };
+    }
+
 }

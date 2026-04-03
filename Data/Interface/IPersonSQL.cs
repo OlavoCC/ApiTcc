@@ -1,5 +1,6 @@
 namespace Data.Interface;
 using Domain.Models.Person;
+using Domain.Models.Pcte;
 public interface IPersonSQL
 {
     Task <bool>LoginAsync(Person person);

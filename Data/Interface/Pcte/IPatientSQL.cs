@@ -8,4 +8,6 @@ public interface IPatientSQL
     Task <int>CreateAdressAsync(Adress adress);
     Task <int>CreatePhoneNumberAsync(Number number);
     Task <int>CreateEmailAsync(Email email);
+    Task <Patient> GetPatientFromIdAsync (int id);
+
 }

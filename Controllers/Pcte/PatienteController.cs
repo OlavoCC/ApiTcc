@@ -57,5 +57,23 @@ public class PatientController : ControllerBase
         }
         return BadRequest(result);
     }
+    
+    [HttpGet("GetById/{id}")]
+    public async Task<IActionResult> GetPatientById(int id)
+    {
+        try
+        {
+            var result = await _patient.GetPatientByIdAsync(id);
+            if (result.Data != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
 
 }
