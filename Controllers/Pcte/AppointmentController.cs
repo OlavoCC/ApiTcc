@@ -16,12 +16,19 @@ public class AppointmentController : ControllerBase
     [HttpPost("createAppointment")]
     public async Task<IActionResult> CreateAppointment([FromBody] EntryAppointmentDTO dto)
     {
-        var result = await _appointmentService.CreateAppointmentAsync(dto);
-        if (result.Data != null)
+        try
         {
-            return Ok(result);
+            var result = await _appointmentService.CreateAppointmentAsync(dto);
+            if (result.Data != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
-        return BadRequest(result);
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
 
     

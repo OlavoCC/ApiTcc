@@ -4,6 +4,7 @@ using DTOs.Pcte.Register;
 using Application.Interfaces;
 using Application.Services;
 using DTOs.PersonModelDTO;
+using Application.Response.Pcte;
 namespace API.Controllers.Pcte;
 
 [ApiController]
@@ -20,8 +21,19 @@ public class PersonController : ControllerBase
 
     [HttpPost("login")]
     public async Task<IActionResult> LoginAsync([FromBody] LoginPatientDTO dto){
-        var result = await _person.LoginAsync(dto);
-        return Ok(result);
+        try
+        {
+            var result = await _person.LoginAsync(dto);
+            if (result.Data == null)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
 
     

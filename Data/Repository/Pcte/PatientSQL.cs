@@ -3,7 +3,6 @@ namespace Data.Repository.Pcte;
 using Data.Interface.Pcte;
 using Domain.Models.Pcte;
 using Domain.Models.Person;
-using Org.BouncyCastle.Bcpg.OpenPgp;
 using Properties;
 
 public class PatientSQL : IPatientSQL
@@ -57,7 +56,7 @@ public class PatientSQL : IPatientSQL
 
     public async Task <Patient> GetPatientFromIdAsync (int id)
     {
-        bool sucess = true;
+        bool sucess = false;
         if(!sucess)
         {
             return null;

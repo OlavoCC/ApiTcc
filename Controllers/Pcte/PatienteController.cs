@@ -18,44 +18,72 @@ public class PatientController : ControllerBase
     [HttpPost("createPatient")]
     public async Task<IActionResult> CreatePatient([FromBody] RegisterPatientDTO dto)
     {
-        var result = await _patient.CreatePatientAsync(dto);
-        if (result.Data != null)
+        try
         {
-            return Ok(result);
+            var result = await _patient.CreatePatientAsync(dto);
+            if (result.Data != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);  
         }
-        return BadRequest(result);    
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }   
     }
 
     [HttpPost("createAdress")]
     public async Task<IActionResult> CreateAdress([FromBody] AddressEntryDTO dto){
-        var result = await _patient.CreateAdressAsync(dto);
-        if (result.Data != null)
+        try
         {
-            return Ok(result);
+            var result = await _patient.CreateAdressAsync(dto);
+            if (result.Data != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result); 
         }
-        return BadRequest(result); 
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
 
     [HttpPost("createNumber")]
     public async Task <IActionResult> CreatePhoneNumberAsync([FromBody] PhoneNumberEntryDTO dto)
     {
-        var result = await _patient.CreatePhoneNumberAsync(dto);
-        if (result.Data != null)
+        try
         {
-            return Ok(result);
+         var result = await _patient.CreatePhoneNumberAsync(dto);
+            if (result.Data != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);   
         }
-        return BadRequest(result);
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
 
     [HttpPost("createEmail")]
     public async Task<IActionResult> CreateEmailAsync([FromBody] EmailEntryDTO dto)
     {
-        var result = await _patient.CreateEmailAsync(dto);
-        if (result.Data != null)
+        try
         {
-            return Ok(result);
+            var result = await _patient.CreateEmailAsync(dto);
+            if (result.Data != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
-        return BadRequest(result);
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
     
     [HttpGet("GetById/{id}")]
