@@ -3,7 +3,14 @@ using Application.Interfaces.Psi;
 using Application.Response.Psi;
 using DTOs.Psi.Register;
 using DTOs.Psi;
-
+using Application.Interfaces;
+using Application.Services;
+using DTOs.PersonModelDTO;
+using DTOs.PersonModelDTO.Return;
+using Microsoft.AspNetCore.Authorization;
+[Authorize(Roles = "A")]
+[ApiController]
+[Route("api/[controller]")]
 public class PsicologController : ControllerBase
 {
     private readonly IPsicologo _psicologo;
@@ -11,6 +18,7 @@ public class PsicologController : ControllerBase
     {
         _psicologo = psicologo;
     }
+
     [HttpGet("/api/ListPsicologo")]
     public async Task<IActionResult> ListPsicologo()
     {

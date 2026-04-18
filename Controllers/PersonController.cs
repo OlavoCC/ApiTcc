@@ -5,8 +5,11 @@ using Application.Interfaces;
 using Application.Services;
 using DTOs.PersonModelDTO;
 using Application.Response.Pcte;
+using DTOs.PersonModelDTO.Return;
+using Microsoft.AspNetCore.Authorization;
 namespace API.Controllers.Pcte;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class PersonController : ControllerBase
@@ -18,7 +21,8 @@ public class PersonController : ControllerBase
     }
 
 
-
+    
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> LoginAsync([FromBody] LoginPersonDTO dto){
         try

@@ -32,7 +32,7 @@ public class PatientService : IPatient
             };
             return result;
         }
-        var returndto = new ReturnPersonDTO(data, "C");
+        var returndto = new ReturnPersonDTO(data, "C", "");
         return new Result<ReturnPersonDTO>
         {
             Message = "Paceinte criado com sucesso",

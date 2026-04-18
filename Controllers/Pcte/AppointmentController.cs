@@ -12,7 +12,7 @@ public class AppointmentController : ControllerBase
     {
         _appointmentService = appointmentService;
     }
-
+    
     [HttpPost("createAppointment")]
     public async Task<IActionResult> CreateAppointment([FromBody] EntryAppointmentDTO dto)
     {

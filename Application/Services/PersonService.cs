@@ -6,14 +6,19 @@ using Data.Interface;
 using Application.Response.Pcte;
 using DTOs.PersonModelDTO.Return;
 using DTOs.PersonModelDTO;
+using Application.Interfaces.Pcte;
+using DTOs.PersonModelDTO;
 namespace Application.Services;
 
 public class PersonService : IPerson
+
 {
     private readonly IPersonSQL _personSQL;
-    public PersonService(IPersonSQL person)
+    private readonly IAuth _auth;
+    public PersonService(IPersonSQL person, IAuth auth)
     {
         _personSQL = person;
+        _auth = auth;
     }
 
 
@@ -23,9 +28,12 @@ public class PersonService : IPerson
         bool data = await _personSQL.LoginAsync(patient);
         if (data){
             var result = await _personSQL.GetId(dto.CPF);
+
             int id = result.Id;
-            string role = result.Role;
-            var returnDTO = new ReturnPersonDTO(id, role);
+                string role = result.Role;
+                    string token = _auth.newToken(id, role);
+            
+            var returnDTO = new ReturnPersonDTO(id, token, role);
             return new Result<ReturnPersonDTO>()
             {
                 Data = returnDTO,

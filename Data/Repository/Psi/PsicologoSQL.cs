@@ -25,7 +25,7 @@ public class PsicologoSQL : IPsicologoSQL
         string crp = p.CRP;
         string espciacilization = p.Espciacilization;
         int id = 1;
-        var a = new ReturnPersonDTO(id, role);
+        var a = new ReturnPersonDTO(id, role, "");
         return a;
     }
 }

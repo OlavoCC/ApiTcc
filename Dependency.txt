@@ -1,3 +1,4 @@
 dotnet add package System.ComponentModel.Annotations
 //SignalR
 dotnet add package MySql.Data
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
