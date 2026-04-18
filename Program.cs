@@ -6,7 +6,8 @@ using Data.Interface;
 using Data.Repository;
 using Application.Services;
 using Application.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using Application.Interfaces.Psi;
+using Data.Interface.Psi;
 using Properties;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +36,8 @@ builder.Services.AddScoped<IAppointment, AppointmentService>();
 builder.Services.AddScoped<IAppointmentSQL, AppointmentSQL>();
 builder.Services.AddScoped<IPersonSQL, PersonSQL>();
 builder.Services.AddScoped<IPerson, PersonService>();
+builder.Services.AddScoped<IPsicologo, PsicologoService>();
+builder.Services.AddScoped<IPsicologoSQL, PsicologoSQL>();
 
 var app = builder.Build();
 
@@ -56,10 +59,9 @@ app.Run();
 
 DBConnection.Connection();
 
-<<<<<<< HEAD
+
 // Alteração para push no main
-=======
-//Crar rotas: ListPatient, ListPsy, RegsiterPsy
+
+//Crar rotas: RegsiterPsy
 //Criar TODAs as rotas de Edit
 //Get id ADM, get id psy
->>>>>>> 8997d07 (Create ListPatient service and add in the controller)

@@ -3,7 +3,6 @@ using Application.Interfaces.Pcte;
 using DTOs.Pcte.Register;
 using DTOs.Appointment;
 using DTOs.PersonModelDTO;
-using Application.Interfaces.Pcte;
 namespace API.Controllers.Pcte;
 
 [ApiController]
