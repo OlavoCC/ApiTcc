@@ -3,16 +3,17 @@ namespace Data.Repository.Pcte;
 using Data.Interface.Pcte;
 using Domain.Models.Pcte;
 using Domain.Models.Person;
+using DTOs.Pcte;
 using Properties;
 
 public class PatientSQL : IPatientSQL
 {
-    
-    public async Task <int>CreatePatientAsync(Patient patient)
+
+    public async Task<int> CreatePatientAsync(Patient patient)
     {
         using var connection = DBConnection.Connection();
 
-        
+
 
         int id = 1;
 
@@ -21,29 +22,33 @@ public class PatientSQL : IPatientSQL
         return id;
     }
 
-    
 
-    public async Task<int>CreateAdressAsync(Adress adress)
+
+    public async Task<int> CreateAdressAsync(Adress adress)
     {
-        
-        if(adress.IsApartment){
+
+        if (adress.IsApartment)
+        {
             int id = 0;
             return id;
         }
-        else{
+        else
+        {
             int id = 0;
             return id;
         }
     }
 
-    public async Task<int>CreatePhoneNumberAsync(Number number)
+    public async Task<int> CreatePhoneNumberAsync(Number number)
     {
-        if(number.IsEmergencyContact){
+        if (number.IsEmergencyContact)
+        {
             int id = 0;
             return id;
         }
-        else{
-           int id = 0;
+        else
+        {
+            int id = 0;
             return id;
         }
     }
@@ -54,10 +59,10 @@ public class PatientSQL : IPatientSQL
         return id;
     }
 
-    public async Task <Patient> GetPatientFromIdAsync (int id)
+    public async Task<Patient> GetPatientFromIdAsync(int id)
     {
         bool sucess = false;
-        if(!sucess)
+        if (!sucess)
         {
             return null;
         }
@@ -65,11 +70,20 @@ public class PatientSQL : IPatientSQL
         string name = "";
         string cpf = "";
         int age = 0;
-        string password = ""; 
+        string password = "";
         string role = "";
 
 
         var patient = new Patient(lastname, name, cpf, age, password, role);
         return patient;
     }
+    
+        public async Task<IEnumerable<ListPatientDTO>> ListAllPatient(){
+        var listpcte = new List<ListPatientDTO>
+            {
+                new ListPatientDTO("", "", "", "", "", "")
+            };
+
+            return listpcte;
+        }
 }

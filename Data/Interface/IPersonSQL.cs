@@ -1,9 +1,12 @@
 namespace Data.Interface;
 using Domain.Models.Person;
 using Domain.Models.Pcte;
+using DTOs.Pcte;
+
 public interface IPersonSQL
 {
-    Task <bool>LoginAsync(Person person);
-    Task <(int Id, string Role)>GetId(string cpf);
+    Task<bool> LoginAsync(Person person);
+    Task<(int Id, string Role)> GetId(string cpf);
+
 
 }

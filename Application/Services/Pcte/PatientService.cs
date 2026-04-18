@@ -19,21 +19,21 @@ public class PatientService : IPatient
 
     //Register
 
-    public async Task<Result<ReturnPatientDTO>> CreatePatientAsync(RegisterPatientDTO dto)
+    public async Task<Result<ReturnPersonDTO>> CreatePatientAsync(RegisterPatientDTO dto)
     {
         var patient = new Patient(dto.Name, dto.LastName, dto.CPF, dto.Age, dto.Password);
         int data = await _patientSQL.CreatePatientAsync(patient);
         if (data <= 0)
         {
-            var result = new Result<ReturnPatientDTO>
+            var result = new Result<ReturnPersonDTO>
             {
                 Message = "Erro ao criar paciente",
 
             };
             return result;
         }
-        var returndto = new ReturnPatientDTO(data, "C");
-        return new Result<ReturnPatientDTO>
+        var returndto = new ReturnPersonDTO(data, "C");
+        return new Result<ReturnPersonDTO>
         {
             Message = "Paceinte criado com sucesso",
             Data = returndto
@@ -47,7 +47,7 @@ public class PatientService : IPatient
     {
         var adress = new Adress(dto.CEP, dto.City, dto.State, dto.Street, dto.Number, dto.Neighborhood, dto.IsApartment, dto.floor, dto.ApartmentNumber);
         int data = await _patientSQL.CreateAdressAsync(adress);
-        if(data <= 0)
+        if (data <= 0)
         {
             var result = new Result<AdressReturnDTO>
             {
@@ -71,17 +71,18 @@ public class PatientService : IPatient
         {
             return new Result<PhoneNumberReturnDTO>
             {
-              Message = "Erro ao criar numero de telefone"  
+                Message = "Erro ao criar numero de telefone"
             };
         }
         var returnDTO = new PhoneNumberReturnDTO(data, number.NNumber, number.NDDD);
-        return new Result<PhoneNumberReturnDTO>{
+        return new Result<PhoneNumberReturnDTO>
+        {
             Message = "Numero de telefone criado com sucesso",
             Data = returnDTO
         };
     }
 
-    public async Task <Result<EmailReturnDTO>> CreateEmailAsync(EmailEntryDTO dto)
+    public async Task<Result<EmailReturnDTO>> CreateEmailAsync(EmailEntryDTO dto)
     {
         var email = new Email(dto.Id, dto.Address, dto.Extension);
         int data = await _patientSQL.CreateEmailAsync(email);
@@ -89,18 +90,18 @@ public class PatientService : IPatient
         {
             return new Result<EmailReturnDTO>
             {
-              Message = "Erro ao criar email"  
+                Message = "Erro ao criar email"
             };
         }
         var returnDTO = new EmailReturnDTO(data, email.EAddress, email.EExtension);
         return new Result<EmailReturnDTO>
         {
-          Message = "Email criado com sucesso",
-          Data = returnDTO  
+            Message = "Email criado com sucesso",
+            Data = returnDTO
         };
     }
 
-    public async Task <Result<Person>> GetPatientByIdAsync(int id)
+    public async Task<Result<Person>> GetPatientByIdAsync(int id)
     {
         var patient = await _patientSQL.GetPatientFromIdAsync(id);
         if (patient != null)
@@ -117,4 +118,26 @@ public class PatientService : IPatient
         };
     }
 
+    public async Task<Result<IEnumerable<ListPatientDTO>>> ListPatient()
+    {
+        var result = await _patientSQL.ListAllPatient();
+        if (result != null && result.Any())
+        {
+            var a = new Result<IEnumerable<ListPatientDTO>>
+            {
+                Message = "Sucess",
+                Data = result
+            };
+            return a;
+        }
+        else
+        {
+            var a = new Result<IEnumerable<ListPatientDTO>>
+            {
+                Message = "Sucess",
+                Data = null
+            };
+            return a;
+        }
+    }
 }

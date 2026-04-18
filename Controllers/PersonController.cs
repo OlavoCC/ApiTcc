@@ -20,7 +20,7 @@ public class PersonController : ControllerBase
 
 
     [HttpPost("login")]
-    public async Task<IActionResult> LoginAsync([FromBody] LoginPatientDTO dto){
+    public async Task<IActionResult> LoginAsync([FromBody] LoginPersonDTO dto){
         try
         {
             var result = await _person.LoginAsync(dto);

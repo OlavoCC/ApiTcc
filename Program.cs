@@ -56,4 +56,10 @@ app.Run();
 
 DBConnection.Connection();
 
+<<<<<<< HEAD
 // Alteração para push no main
+=======
+//Crar rotas: ListPatient, ListPsy, RegsiterPsy
+//Criar TODAs as rotas de Edit
+//Get id ADM, get id psy
+>>>>>>> 8997d07 (Create ListPatient service and add in the controller)

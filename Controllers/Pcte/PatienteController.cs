@@ -3,6 +3,7 @@ using Application.Interfaces.Pcte;
 using DTOs.Pcte.Register;
 using DTOs.Appointment;
 using DTOs.PersonModelDTO;
+using Application.Interfaces.Pcte;
 namespace API.Controllers.Pcte;
 
 [ApiController]
@@ -25,16 +26,17 @@ public class PatientController : ControllerBase
             {
                 return Ok(result);
             }
-            return BadRequest(result);  
+            return BadRequest(result);
         }
         catch (Exception ex)
         {
             return StatusCode(500, $"Internal server error: {ex.Message}");
-        }   
+        }
     }
 
     [HttpPost("createAdress")]
-    public async Task<IActionResult> CreateAdress([FromBody] AddressEntryDTO dto){
+    public async Task<IActionResult> CreateAdress([FromBody] AddressEntryDTO dto)
+    {
         try
         {
             var result = await _patient.CreateAdressAsync(dto);
@@ -42,7 +44,7 @@ public class PatientController : ControllerBase
             {
                 return Ok(result);
             }
-            return BadRequest(result); 
+            return BadRequest(result);
         }
         catch (Exception ex)
         {
@@ -51,16 +53,16 @@ public class PatientController : ControllerBase
     }
 
     [HttpPost("createNumber")]
-    public async Task <IActionResult> CreatePhoneNumberAsync([FromBody] PhoneNumberEntryDTO dto)
+    public async Task<IActionResult> CreatePhoneNumberAsync([FromBody] PhoneNumberEntryDTO dto)
     {
         try
         {
-         var result = await _patient.CreatePhoneNumberAsync(dto);
+            var result = await _patient.CreatePhoneNumberAsync(dto);
             if (result.Data != null)
             {
                 return Ok(result);
             }
-            return BadRequest(result);   
+            return BadRequest(result);
         }
         catch (Exception ex)
         {
@@ -85,13 +87,30 @@ public class PatientController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
-    
+
     [HttpGet("GetById/{id}")]
     public async Task<IActionResult> GetPatientById(int id)
     {
         try
         {
             var result = await _patient.GetPatientByIdAsync(id);
+            if (result.Data != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+    [HttpGet("ListPatient")]
+    public async Task<IActionResult> ListPatient()
+    {
+        try
+        {
+            var result = await _patient.ListPatient();
             if (result.Data != null)
             {
                 return Ok(result);
