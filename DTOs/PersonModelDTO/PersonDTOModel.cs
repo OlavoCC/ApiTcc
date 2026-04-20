@@ -17,7 +17,7 @@ public class PersonDTOModel{
 
     [Required(ErrorMessage = "Age is Required")]
     [Range(1, 100)]
-    public int Age {get; set;}
+    public string Age {get; set;}
 
     [Required(ErrorMessage = "Password is Required")]
     [MinLength(6, ErrorMessage = "Password MinLenght = 6 char")]

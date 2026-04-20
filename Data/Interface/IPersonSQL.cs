@@ -5,8 +5,8 @@ using DTOs.Pcte;
 
 public interface IPersonSQL
 {
-    Task<bool> LoginAsync(Person person);
-    Task<(int Id, string Role)> GetId(string cpf);
+    Task<(bool Success, string Role)> LoginAsync(Person person);
+    Task<int> GetId(string cpf, string Role);
 
 
 }

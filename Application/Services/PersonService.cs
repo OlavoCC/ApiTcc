@@ -24,16 +24,13 @@ public class PersonService : IPerson
 
     public async Task<Result<ReturnPersonDTO>> LoginAsync(LoginPersonDTO dto)
     {
-        var patient = new Patient("", "", dto.CPF, 0, dto.Password, "");
-        bool data = await _personSQL.LoginAsync(patient);
-        if (data){
-            var result = await _personSQL.GetId(dto.CPF);
-
-            int id = result.Id;
-                string role = result.Role;
-                    string token = _auth.newToken(id, role);
+        var patient = new Patient(0, "", "", dto.CPF, "0", dto.Password, "");
+        var data = await _personSQL.LoginAsync(patient);
+        if (data.Success){
+            int result = await _personSQL.GetId(dto.CPF, data.Role);
+            string token = _auth.newToken(result, data.Role);
             
-            var returnDTO = new ReturnPersonDTO(id, token, role);
+            var returnDTO = new ReturnPersonDTO(result, token, data.Role);
             return new Result<ReturnPersonDTO>()
             {
                 Data = returnDTO,

@@ -39,7 +39,7 @@ public class PsicologoService : IPsicologo
 
     public async Task<Result<ReturnPersonDTO>> RegisterPsicologo(EntryPsicologoDTO dto)
     {
-        var psciologo = new Psicologo(dto.LastName, dto.Name, dto.CPF, dto.Age, dto.Password, dto.Espciacilization, dto.CRP);
+        var psciologo = new Psicologo(0, dto.Name, dto.LastName, dto.CPF, dto.Age, dto.Password, dto.Espciacilization, dto.CRP);
         var result = await _psicologoSQL.RegisterPsicologo(psciologo);
         if (result.Id != 0)
         {

@@ -21,7 +21,7 @@ public class PatientService : IPatient
 
     public async Task<Result<ReturnPersonDTO>> CreatePatientAsync(RegisterPatientDTO dto)
     {
-        var patient = new Patient(dto.Name, dto.LastName, dto.CPF, dto.Age, dto.Password);
+        var patient = new Patient(0, dto.Name, dto.LastName, dto.CPF, dto.Age, dto.Password);
         int data = await _patientSQL.CreatePatientAsync(patient);
         if (data <= 0)
         {

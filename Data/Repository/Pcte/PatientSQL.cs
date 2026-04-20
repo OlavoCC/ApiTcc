@@ -69,12 +69,12 @@ public class PatientSQL : IPatientSQL
         string lastname = "";
         string name = "";
         string cpf = "";
-        int age = 0;
+        string age = "0";
         string password = "";
         string role = "C";
 
 
-        var patient = new Patient(lastname, name, cpf, age, password, role);
+        var patient = new Patient(id, name, lastname, cpf, age, password, role);
         return patient;
     }
     

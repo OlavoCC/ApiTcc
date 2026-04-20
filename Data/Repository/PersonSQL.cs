@@ -5,18 +5,17 @@ using DTOs.Pcte;
 
 public class PersonSQL : IPersonSQL
 {
-    public async Task<bool> LoginAsync(Person person)
+    public async Task<(bool Success, string Role)> LoginAsync(Person person)
     {
         string cpf = person.CPF;
         string password = person.Password;
-        return true;
+        return (true, "C");
     }
-    public async Task<(int Id, string Role)> GetId(string cpf)
+    public async Task<int> GetId(string cpf, string Role)
     {
         
         int id = 0;
-        string role = "C";
-        return (id, role);
+        return id;
     }
 
 

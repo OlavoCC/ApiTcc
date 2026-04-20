@@ -19,7 +19,7 @@ public class PsicologoSQL : IPsicologoSQL
         string name = p.Name;
         string lastName = p.LastName;
         string cpf = p.CPF;
-        int age = p.Age;
+        string age = p.Age;
         string password = p.Password;
         string role = p.Role;
         string crp = p.CRP;
