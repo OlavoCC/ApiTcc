@@ -13,8 +13,9 @@ public class PersonSQL : IPersonSQL
     }
     public async Task<(int Id, string Role)> GetId(string cpf)
     {
+        
         int id = 0;
-        string role = "c";
+        string role = "C";
         return (id, role);
     }
 

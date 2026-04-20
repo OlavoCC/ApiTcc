@@ -71,7 +71,7 @@ public class PatientSQL : IPatientSQL
         string cpf = "";
         int age = 0;
         string password = "";
-        string role = "";
+        string role = "C";
 
 
         var patient = new Patient(lastname, name, cpf, age, password, role);
